@@ -1,5 +1,4 @@
-
-
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600&display=swap');
 html {
   box-sizing: border-box;
 }
@@ -10,58 +9,47 @@ body {
   overflow-y: hidden;
   display: flex;
   align-items: center;
-
+  font-family: 'Mukta', sans-serif;
 }
 
-/* Video Background */
+/*********** Video Background ***********/
 .video-background {
-  position: fixed;
-  right: 0;
-  bottom: 0;
   width: 100vw;
-  height:auto;
-}
-
-video {
+  height:100vh;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit:cover;
 }
 
-.video-overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(255, 255, 255, 0.35);
-}
-
-/* Container */
+/* Main Container */
 .container {
-  min-width: 580px;
-  min-height: 304px;
+  min-width: 580px;  /* so the width will be fixed when content change */
+  min-height: 335px; /* so the height will be fixed when content change */
   color: black;
   margin: 0 auto;
-  padding: 25px 50px;
-  border-radius: 5px;
+  padding: 50px 50px 75px;
+  border-radius: 20px;
   z-index: 2;
   display: flex;
   justify-content: center;
-
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
+/*********** input view and gerneral setting**********/
 .input-container {
   position: relative;
   top: 20px;
 }
 
 h1 {
-  font-size: 35px;
+  font-size: 2.5rem;
+  font-weight: 600;
   text-align: center;
   margin-top: 0;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 
 /* Form */
@@ -72,6 +60,8 @@ h1 {
 label {
   font-weight: bold;
   margin-left: 10px;
+  font-weight: 300;
+  font-size:1.2rem;
 }
 
 input {
@@ -82,67 +72,101 @@ input {
   border-radius: 20px;
   background: #fff;
   outline: none;
-
+  font-family: 'Mukta', sans-serif;
 }
 
 /* Button */
 button {
+  position: relative;
   width: 100%;
   height: 40px;
   border-radius: 20px;
-  margin-top: 15px;
+  margin-top: 25px;
   border: none;
   text-transform: uppercase;
-  background: #006959;
+  background: #004869;
   color: white;
   cursor: pointer;
   outline: none;
+  transition: filter 0.2s;
+}
+
+button:hover{
+  filter: brightness(130%);
+}
+
+button:active{
+  filter: brightness(90%);
 }
 
 
-
-/* Countdown */
+/******** Countdown View **********/
 ul {
   margin-left: -45px;
 }
 
 li {
-
+  display: inline-block;
   font-size: 30px;
   list-style-type: none;
   padding: 10px;
   text-transform: uppercase;
+  font-weight:300;
 }
 
 li span {
   display: block;
   font-size: 80px;
   text-align: center;
+  font-weight: 600;
 }
 
-/* Complete */
+/************ Complete View ***********/
 .complete {
   position: relative;
   top: 60px;
 }
 
+h2{
+  font-size: 1.75rem;
+}
 
-/* Media Query: Large Smartphone (Vertical) */
+.complete-title{
+  margin-bottom: 50px;
+  animation: complete 4s infinite;
+  font-weight:600;
+}
+
+@keyframes complete{
+  0% {
+    color:rgb(96, 46, 161);
+  }
+  25% {
+    color:rgb(21, 105, 202);
+  }
+  50% {
+    color:rgb(33, 160, 122);
+    transform:scale(1.5);
+  }
+  75% {
+    color:rgb(21, 105, 202);
+  }
+  100% {
+    color:rgb(96, 46, 161);
+  }
+
+}
+
+/****************************************************/
+/***** Media Query: Large Smartphone (Vertical) *****/
+/****************************************************/
+
 @media screen and (max-width: 600px) {
-  .video-background {
-      height:100vh;
-  }
-  
-  video {
-    object-fit: cover;
-    object-position:80%;
-    margin-top: -1px;
-  }
-
   .container {
-
+    min-width: unset;
+    width: 95vw;
     min-height: 245px;
-    padding: 20px;
+    padding: 20px 20px 40px;
     margin: 10px;
   }
 
@@ -164,14 +188,14 @@ li span {
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 1.75rem;
   }
 
   li {
-    font-size: 15px;
+    font-size: 1rem;
   }
 
   li span {
-    font-size: 40px;
+    font-size: 3rem;
   }
 }
