@@ -58,9 +58,14 @@ function updateCountdown(e){
     countdownTitle = document.getElementById('title').value;
     countdownDate = document.getElementById('date-picker').value;
     
-    // Get Number Version of current Date, update DOM
-    countdownValue = new Date(countdownDate).getTime();
-    updateDOM();
+    // Check form is not empty
+    if (countdownTitle ==='' || countdownDate ===''){
+        alert("Please fill in both of the fields: \nTitle & Date")
+    }else{
+        //Get Number Version of current Date, update DOM
+        countdownValue = new Date(countdownDate).getTime();
+        updateDOM();
+    }
 }
 
 // Reset All Values 
