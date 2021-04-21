@@ -19,6 +19,7 @@ let countdownTitle = '';
 let countdownDate = '';
 let countdownValue = Date;
 let countdownActive;
+let savedCountdown;
 
 const second = 1000;
 const minute = second * 60;
@@ -72,6 +73,13 @@ function updateCountdown(e){
     countdownTitle = document.getElementById('title').value;
     countdownDate = document.getElementById('date-picker').value;
     
+    savedCountdown = {
+        title: countdownTitle,
+        date: countdownDate
+    };
+    
+    localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+
     // Check form is not empty
     if (countdownTitle ==='' || countdownDate ===''){
         alert("Please fill in both of the fields: \nTitle & Date")
@@ -95,10 +103,27 @@ function reset(){
     // Reset Countdown info
     countdownTitle = '';
     countdownDate = '';
+    localStorage.removeItem('countdown');
 }
+
+// access previous title and date, restore it 
+function restorePreviousCountdown(){
+    // Get countdown from localStorage if available
+    if(localStorage.getItem('countdown')){
+        inputContainer.hidden = true;
+        savedCountdown = JSON.parse(localStorage.getItem('countdown'));
+        countdownTitle = savedCountdown.title;
+        countdownDate = savedCountdown.date;
+        countdownValue = new Date(countdownDate).getTime();
+        updateDOM();
+    }
+};
 
 
 // Event Listener
 countdownForm.addEventListener('submit', updateCountdown);
 countdownBtn.addEventListener('click', reset);
 completeBtn.addEventListener('click', reset);
+
+// On load, check localStorage
+restorePreviousCountdown();
